@@ -84,6 +84,13 @@ GEM
       irb (~> 1.10)
       reline (>= 0.3.8)
     diff-lcs (1.5.1)
+    dry-core (1.0.1)
+      concurrent-ruby (~> 1.0)
+      zeitwerk (~> 2.6)
+    dry-monads (1.6.0)
+      concurrent-ruby (~> 1.0)
+      dry-core (~> 1.0, < 2)
+      zeitwerk (~> 2.6)
     erubi (1.13.0)
     factory_bot (6.4.6)
       activesupport (>= 5.0.0)
@@ -229,6 +236,7 @@ DEPENDENCIES
   active_model_serializers
   bootsnap
   debug
+  dry-monads (~> 1.6)
   factory_bot_rails
   faker
   pg (~> 1.1)
