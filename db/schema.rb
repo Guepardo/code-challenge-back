@@ -17,7 +17,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_07_16_191013) do
   create_table "profiles", force: :cascade do |t|
     t.string "username", limit: 255, null: false
     t.string "profile_url", limit: 2048, null: false
-    t.string "avatar_url", limit: 2048, null: false
+    t.string "avatar_url", limit: 2048
     t.integer "fallowers_count", default: 0, null: false
     t.integer "fallowing_count", default: 0, null: false
     t.integer "stars_count", default: 0, null: false

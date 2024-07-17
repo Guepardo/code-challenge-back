@@ -14,7 +14,7 @@ class Profile < ApplicationRecord
 
   validates :profile_url, format: {
     with: %r{\Ahttps://github\.com/[a-zA-Z0-9_-]+\z},
-    message: :invalid_profile_url
+    message: 'profile.invalid_profile_url'
   }
 
   validates :username, length: { maximum: 255 }
