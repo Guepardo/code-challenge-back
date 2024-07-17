@@ -5,7 +5,13 @@ module Profiles
     end
 
     def call
-      Profile.create(params) ? Success(true) : Failure(errors: Profile.errors)
+      profile = Profile.create(params)
+
+      if profile.valid?
+        Success(profile)
+      else
+        Failure(errors: profile.errors)
+      end
     end
 
     private

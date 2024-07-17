@@ -8,4 +8,10 @@ Rails.application.routes.draw do
 
   # TODO: Add username and password later.
   mount Sidekiq::Web => '/sidekiq'
+
+  namespace :api do
+    namespace :v1 do
+      resources :profiles, only: %i[index create update]
+    end
+  end
 end
