@@ -1,7 +1,13 @@
 class Api::V1::ProfilesController < ApplicationController
   before_action :set_profile, only: [:update]
 
-  def index; end
+  def index
+    profiles = ProfilesFinder.filter(params)
+
+    render json: Api::V1::ProfileSerializer.new(profiles,
+                                                meta: pagination_meta(profiles),
+                                                each_serializer: Api::V1::ProfileSerializer).serializable_hash
+  end
 
   def create
     result = Profiles::Create.call(profile_params)

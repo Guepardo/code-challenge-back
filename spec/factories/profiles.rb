@@ -3,7 +3,7 @@ FactoryBot.define do
     username { Faker::Name.unique.name }
     profile_url { "https://github.com/#{SecureRandom.hex(10)}" }
     avatar_url { Faker::Internet.url }
-    fallowers_count { Faker::Number.within(range: 0..100) }
+    followers_count { Faker::Number.within(range: 0..100) }
     fallowing_count { Faker::Number.within(range: 0..100) }
     stars_count { Faker::Number.within(range: 0..100) }
     year_contributions_count { Faker::Number.within(range: 0..100) }

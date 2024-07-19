@@ -4,7 +4,7 @@ class CreateProfiles < ActiveRecord::Migration[7.0]
       t.string :username, limit: 255, null: false
       t.string :profile_url, limit: 2048, null: false
       t.string :avatar_url, limit: 2048, null: true
-      t.integer :fallowers_count, default: 0, null: false
+      t.integer :followers_count, default: 0, null: false
       t.integer :fallowing_count, default: 0, null: false
       t.integer :stars_count, default: 0, null: false
       t.integer :year_contributions_count, default: 0, null: false

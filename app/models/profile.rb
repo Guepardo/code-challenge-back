@@ -4,7 +4,7 @@ class Profile < ApplicationRecord
   end
 
   with_options numericality: { greater_than_or_equal_to: 0 } do |profile|
-    profile.validates :fallowers_count, :fallowing_count, :stars_count, :year_contributions_count
+    profile.validates :followers_count, :fallowing_count, :stars_count, :year_contributions_count
   end
 
   with_options length: { maximum: 2048 } do |profile|
