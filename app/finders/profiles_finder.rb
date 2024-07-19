@@ -1,4 +1,5 @@
 class ProfilesFinder < ApplicationFinder
+  DEFAULT_ITEMS_PER_PAGE = 6
   def initialize(filter_params)
     @filter_params = filter_params
   end

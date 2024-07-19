@@ -28,7 +28,7 @@ RSpec.describe Profile, type: :model do
 
     context 'numericality' do
       it { should validate_numericality_of(:followers_count).is_greater_than_or_equal_to(0) }
-      it { should validate_numericality_of(:fallowing_count).is_greater_than_or_equal_to(0) }
+      it { should validate_numericality_of(:following_count).is_greater_than_or_equal_to(0) }
       it { should validate_numericality_of(:stars_count).is_greater_than_or_equal_to(0) }
       it { should validate_numericality_of(:year_contributions_count).is_greater_than_or_equal_to(0) }
     end

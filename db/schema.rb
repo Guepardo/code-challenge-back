@@ -19,7 +19,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_07_16_191013) do
     t.string "profile_url", limit: 2048, null: false
     t.string "avatar_url", limit: 2048
     t.integer "followers_count", default: 0, null: false
-    t.integer "fallowing_count", default: 0, null: false
+    t.integer "following_count", default: 0, null: false
     t.integer "stars_count", default: 0, null: false
     t.integer "year_contributions_count", default: 0, null: false
     t.string "location", limit: 255

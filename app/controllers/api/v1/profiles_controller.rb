@@ -4,9 +4,10 @@ class Api::V1::ProfilesController < ApplicationController
   def index
     profiles = ProfilesFinder.filter(params)
 
-    render json: Api::V1::ProfileSerializer.new(profiles,
-                                                meta: pagination_meta(profiles),
-                                                each_serializer: Api::V1::ProfileSerializer).serializable_hash
+    render json: {
+      data: serialize_resource(profiles, Api::V1::ProfileSerializer), #TODO: have a better way to do this
+      meta: pagination_meta(profiles)
+    }
   end
 
   def create
