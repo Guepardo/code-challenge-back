@@ -24,6 +24,9 @@ class Profile < ApplicationRecord
   validates :organization_name, length: { maximum: 255 }, if: -> { organization_name.present? }
   validates :nanoid, uniqueness: true
 
+  enum sync_status: { idle: 'idle', pending: 'pending', processing: 'processing', success: 'success',
+                      failure: 'failure' }
+
   private
 
   def generate_nanoid

@@ -11,6 +11,8 @@ class CreateProfiles < ActiveRecord::Migration[7.0]
       t.string :location, limit: 255
       t.string :organization_name, limit: 255
       t.string :nanoid, limit: 10
+      t.string :sync_status, default: :idle, null: false
+
       t.timestamps
     end
 
