@@ -14,4 +14,6 @@ Rails.application.routes.draw do
       resources :profiles, only: %i[index create update]
     end
   end
+
+  get '/:nanoid', to: 'links#show'
 end

@@ -15,6 +15,8 @@ RSpec.describe Profile, type: :model do
         subject.profile_url = profile_url
       end
 
+      it { should validate_uniqueness_of(:nanoid) }
+
       it 'validates presence and uniqueness of username' do
         expect(subject).to validate_presence_of(:username)
         expect(subject).to validate_uniqueness_of(:username).case_insensitive
@@ -24,6 +26,7 @@ RSpec.describe Profile, type: :model do
         expect(subject).to validate_presence_of(:profile_url)
         expect(subject).to validate_uniqueness_of(:profile_url).case_insensitive
       end
+
     end
 
     context 'numericality' do
