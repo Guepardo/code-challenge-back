@@ -1,7 +1,5 @@
 module Links
   class Lookup < ApplicationService
-    LOOKUP_EXPIRES_IN = 1.hour
-
     def initialize(nanoid:)
       @nanoid = nanoid
     end
@@ -36,6 +34,8 @@ module Links
     def find_from_cache
       Rails.cache.read(nanoid)
     end
+
+    LOOKUP_EXPIRES_IN = 1.hour
 
     def store_in_cache(url)
       Rails.cache.write(nanoid, url, expires_in: LOOKUP_EXPIRES_IN)
