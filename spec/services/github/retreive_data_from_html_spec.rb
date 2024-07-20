@@ -11,10 +11,10 @@ RSpec.describe Github::RetreiveDataFromHtml do
 
   it 'retrieves the correct data from the HTML' do
     expected_data = {
-      stars_count: '7',
-      followers_count: '212k',
-      following_count: '0',
-      year_contributions_count: '2724',
+      stars_count: 7,
+      followers_count: 212000,
+      following_count: 0,
+      year_contributions_count: 2724,
       profile_url: 'https://avatars.githubusercontent.com/u/1024025?v=4',
       location: 'Portland, OR',
       organization_name: 'Linux Foundation'
@@ -30,10 +30,10 @@ RSpec.describe Github::RetreiveDataFromHtml do
 
     it 'retrieves the correct data from the HTML' do
       expected_data = {
-        stars_count: '2',
-        followers_count: '4',
-        following_count: '13',
-        year_contributions_count: '152',
+        stars_count: 2,
+        followers_count: 4,
+        following_count: 13,
+        year_contributions_count: 152,
         profile_url: 'https://avatars.githubusercontent.com/u/98629093?v=4',
         location: '',
         organization_name: ''

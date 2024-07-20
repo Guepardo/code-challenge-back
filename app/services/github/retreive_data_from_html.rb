@@ -44,24 +44,27 @@ module Github
     end
 
     def stars_count
-      document.css(HTML_SELECTORS[:stars_count]).first.text
+      result = document.css(HTML_SELECTORS[:stars_count]).first.text
+      SI.revert(result).to_i
     end
 
     def followers_count
-      document.css(HTML_SELECTORS[:followers_count]).text
+      result = document.css(HTML_SELECTORS[:followers_count]).text
+      SI.revert(result).to_i
     end
 
     def following_count
-      document.css(HTML_SELECTORS[:following_count]).text
+      result = document.css(HTML_SELECTORS[:following_count]).text
+      SI.revert(result).to_i
     end
 
     def year_contributions_count
       value = document.css(HTML_SELECTORS[:year_contributions_count]).text
       match = value.match(/\d{1,3}(?:,\d{3})*/)
 
-      return match[0].gsub(',', '') if match
+      return match[0].gsub(',', '').to_i if match
 
-      '0'
+      0
     end
 
     def profile_url
