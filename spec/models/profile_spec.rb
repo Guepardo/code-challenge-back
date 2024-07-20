@@ -48,4 +48,13 @@ RSpec.describe Profile, type: :model do
       it { should_not allow_value('invalid_url').for(:profile_url) }
     end
   end
+
+  describe 'bofore create callback' do
+    subject { create(:profile) }
+
+    it 'generates nanoid' do
+      expect(subject.nanoid).to be_present
+      expect(subject.nanoid.length).to eq(5)
+    end
+  end
 end

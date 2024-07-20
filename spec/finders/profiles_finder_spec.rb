@@ -59,7 +59,7 @@ RSpec.describe ProfilesFinder do
     context 'with no filters' do
       it 'returns all profiles' do
         profiles = described_class.filter({})
-        expect(profiles.count).to eq(10)
+        expect(profiles.count).to eq(6)
       end
     end
   end

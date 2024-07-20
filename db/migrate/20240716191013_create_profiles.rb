@@ -10,7 +10,7 @@ class CreateProfiles < ActiveRecord::Migration[7.0]
       t.integer :year_contributions_count, default: 0, null: false
       t.string :location, limit: 255
       t.string :organization_name, limit: 255
-
+      t.string :nanoid, limit: 10
       t.timestamps
     end
 

@@ -1,4 +1,6 @@
 class Profile < ApplicationRecord
+  before_create :generate_nanoid
+
   with_options presence: true, uniqueness: { case_sensitive: false } do |profile|
     profile.validates :username, :profile_url
   end
@@ -20,4 +22,10 @@ class Profile < ApplicationRecord
   validates :username, length: { maximum: 255 }
   validates :location, length: { maximum: 255 }, if: -> { location.present? }
   validates :organization_name, length: { maximum: 255 }, if: -> { organization_name.present? }
+
+  private
+
+  def generate_nanoid
+    self.nanoid ||= Nanoid.generate(size: 5)
+  end
 end

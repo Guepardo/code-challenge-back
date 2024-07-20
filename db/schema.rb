@@ -24,6 +24,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_07_16_191013) do
     t.integer "year_contributions_count", default: 0, null: false
     t.string "location", limit: 255
     t.string "organization_name", limit: 255
+    t.string "nanoid", limit: 10
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["profile_url"], name: "index_profiles_on_profile_url", unique: true
