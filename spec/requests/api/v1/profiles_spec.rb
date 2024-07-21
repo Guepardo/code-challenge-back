@@ -61,4 +61,42 @@ RSpec.describe 'Api::V1::Profiles', type: :request do
       end
     end
   end
+
+  describe 'POST /api/v1/profiles/:id/sync' do
+    let(:profile) { create(:profile) }
+
+    context 'when the profile exists and the job is successful' do
+      before do
+        allow(Profiles::CreateGithubImporterJob).to \
+          receive(:call).with(profile).and_return(Dry::Monads::Success(profile))
+      end
+
+      it 'returns status created' do
+        post "/api/v1/profiles/#{profile.id}/sync"
+        expect(response).to have_http_status(:created)
+      end
+
+      it 'calls the CreateGithubImporterJob with the profile' do
+        post "/api/v1/profiles/#{profile.id}/sync"
+        expect(Profiles::CreateGithubImporterJob).to have_received(:call).with(profile)
+      end
+    end
+
+    context 'when the profile exists and the job fails' do
+      before do
+        allow(Profiles::CreateGithubImporterJob).to \
+          receive(:call).with(profile).and_return(Dry::Monads::Failure(:some_error))
+      end
+
+      it 'returns status unprocessable_entity' do
+        post "/api/v1/profiles/#{profile.id}/sync"
+        expect(response).to have_http_status(:unprocessable_entity)
+      end
+
+      it 'returns the error in the response body' do
+        post "/api/v1/profiles/#{profile.id}/sync"
+        expect(response.body).to match(/some_error/)
+      end
+    end
+  end
 end
