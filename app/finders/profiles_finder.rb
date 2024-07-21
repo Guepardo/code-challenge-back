@@ -8,7 +8,10 @@ class ProfilesFinder < ApplicationFinder
     profiles = apply_filters(Profile.all)
 
     # TODO: unsafe code. should be refactored
-    profiles.page(filter_params[:page]).per(filter_params[:per_page] || DEFAULT_ITEMS_PER_PAGE)
+    profiles
+      .order('created_at DESC')
+      .page(filter_params[:page])
+      .per(filter_params[:per_page] || DEFAULT_ITEMS_PER_PAGE)
   end
 
   private
@@ -16,21 +19,13 @@ class ProfilesFinder < ApplicationFinder
   attr_reader :filter_params
 
   def apply_filters(profiles)
+    return profiles unless filter_params[:term].present?
+
     conditions = []
-
-    if filter_params[:username].present?
-      conditions << profiles_table[:username].matches("%#{filter_params[:username]}%")
-    end
-
-    if filter_params[:location].present?
-      conditions << profiles_table[:location].matches("%#{filter_params[:location]}%")
-    end
-
-    if filter_params[:organization_name].present?
-      conditions << profiles_table[:organization_name].matches("%#{filter_params[:organization_name]}%")
-    end
-
-    return profiles if conditions.empty?
+    conditions << profiles_table[:username].matches("%#{filter_params[:term]}%")
+    conditions << profiles_table[:location].matches("%#{filter_params[:term]}%")
+    conditions << profiles_table[:organization_name].matches("%#{filter_params[:term]}%")
+    conditions << profiles_table[:profile_url].matches("%#{filter_params[:term]}%")
 
     combined_condition = conditions.reduce { |acc, condition| acc.or(condition) }
 
