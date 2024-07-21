@@ -1,0 +1,47 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:13
+    container_name: postgres_db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 12345
+      POSTGRES_DB: github_profile_development
+    ports:
+      - "5432:5432"
+
+  redis:
+    image: redis:6.2
+    container_name: redis_cache
+    ports:
+      - "6379:6379"
+
+  web:
+    container_name: github_profile_web
+    image: github_profile:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: bash -c "bundle exec rake db:migrate db:seed && bundle exec puma -C config/puma.rb"
+    env_file:
+      - .env
+    volumes:
+      - ".:/app"
+    depends_on:
+      - db
+    ports:
+      - "3000:3000"
+
+  sidekiq:
+    image: github_profile:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: bash -c "bundle exec sidekiq -C config/sidekiq.yml"
+    env_file:
+      - .env
+    volumes:
+      - ".:/app"
+    depends_on:
+      - web
