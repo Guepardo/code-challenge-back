@@ -99,4 +99,13 @@ RSpec.describe 'Api::V1::Profiles', type: :request do
       end
     end
   end
+
+  describe 'DELETE /api/v1/profiles/:id' do
+    let!(:profile) { create(:profile) }
+
+    it 'deletes the profile' do
+      expect { delete "/api/v1/profiles/#{profile.id}" }
+        .to change(Profile, :count).from(1).to(0)
+    end
+  end
 end

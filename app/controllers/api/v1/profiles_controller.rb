@@ -1,5 +1,5 @@
 class Api::V1::ProfilesController < ApplicationController
-  before_action :set_profile, only: [:update]
+  before_action :set_profile, only: [:update, :destroy]
 
   def index
     profiles = ProfilesFinder.filter(params)
@@ -28,6 +28,12 @@ class Api::V1::ProfilesController < ApplicationController
     else
       render json: result.failure[:errors].full_messages, status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    @profile.destroy
+
+    head :ok
   end
 
   private

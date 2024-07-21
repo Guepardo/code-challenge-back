@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :profiles, only: %i[index create update] do
+      resources :profiles, only: %i[index create update destroy] do
         member do
           post :sync, to: 'profile_syncs#create'
         end

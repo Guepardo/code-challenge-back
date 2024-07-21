@@ -7,7 +7,7 @@
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins "localhost:5173" # TODO: fix security issues later
+    origins ENV.fetch('CORS_ORIGINS', 'localhost:5173').split(',')
 
     resource "*",
       headers: :any,
@@ -15,3 +15,4 @@ Rails.application.config.middleware.insert_before 0, Rack::Cors do
       credentials: true
   end
 end
+
