@@ -5,7 +5,7 @@ module Profiles
     end
 
     def call
-      return Failure(:can_not_start_sync) unless can_start_sync?
+      return Failure(:can_not_start_sync) if can_not_start_sync?
 
       set_sync_status_as_pending
       GithubImporterJob.perform_later(profile.id)
@@ -17,8 +17,8 @@ module Profiles
 
     attr_reader :profile
 
-    def can_start_sync?
-      profile.sync_status != 'pending'
+    def can_not_start_sync?
+      profile.sync_status == 'processing' || profile.sync_status == 'pending'
     end
 
     def set_sync_status_as_pending

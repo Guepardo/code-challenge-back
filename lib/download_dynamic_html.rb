@@ -17,7 +17,6 @@ class DownloadDynamicHtml
     page = browser.new_page
 
     page.goto(url, wait_until: 'networkidle0', timeout: TIMEOUT * 1000)
-    page.wait_for_selector(wait_until_selector) if wait_until_selector
 
     content = page.content
 

@@ -33,11 +33,11 @@ RSpec.describe Profiles::CreateGithubImporterJob do
     end
 
     context 'when sync can not be started' do
-      let(:sync_status) { 'pending' }
+      let(:sync_status) { 'processing' }
 
       it 'does not change the sync status' do
         service_call
-        expect(profile.reload.sync_status).to eq('pending')
+        expect(profile.reload.sync_status).to eq('processing')
       end
 
       it 'does not enqueue the GithubImporterJob' do

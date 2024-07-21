@@ -6,19 +6,17 @@ module Github
       followers_count: 'div.js-profile-editable-area a.Link--secondary > span:nth-child(2)',
       following_count: 'div.js-profile-editable-area a.Link--secondary > span:nth-child(1)',
       year_contributions_count: 'div.js-yearly-contributions > div > h2',
-      profile_url: 'div.js-profile-editable-replace img.avatar',
+      avatar_url: 'div.js-profile-editable-replace img.avatar',
       location: '//li[@itemprop="homeLocation"]//span[@class="p-label"]',
       organization_name: '//li[@itemprop="worksFor"]//span[@class="p-org"]/div'
     }
-
-    DYNAMIC_COMPONENT_SELECTOR = 'div.js-yearly-contributions'
 
     def initialize(url:)
       @url = url
     end
 
     def call
-      @html_content = DownloadDynamicHtml.download(url, wait_until_selector: DYNAMIC_COMPONENT_SELECTOR)
+      @html_content = DownloadDynamicHtml.download(url)
 
       return Failure(:not_found_profile) if not_found_profile?
 
@@ -27,7 +25,7 @@ module Github
         followers_count:,
         following_count:,
         year_contributions_count:,
-        profile_url:,
+        avatar_url:,
         location:,
         organization_name:
       }
@@ -67,8 +65,8 @@ module Github
       0
     end
 
-    def profile_url
-      document.css(HTML_SELECTORS[:profile_url]).first.attr('src')
+    def avatar_url
+      document.css(HTML_SELECTORS[:avatar_url]).first.attr('src')
     end
 
     def location

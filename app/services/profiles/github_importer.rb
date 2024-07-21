@@ -1,6 +1,6 @@
 module Profiles
   class GithubImporter < ApplicationService
-    ALLOWED_SYNC_STATUS = %w[idle failure].freeze
+    ALLOWED_SYNC_STATUS = %w[idle failure pending].freeze
 
     def initialize(profile)
       @profile = profile
