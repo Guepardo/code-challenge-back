@@ -27,16 +27,22 @@ gem "redis", "~> 4.0"
 # Serialize models
 gem 'active_model_serializers'
 
+# Sidekiq for background jobs
 gem "sidekiq", "~> 7.3"
 
+# Dry monads for help with service objects
 gem 'dry-monads', '~> 1.6'
 
+# Pagination
 gem 'kaminari'
 
+# Nanoid for generating small unique ids
 gem 'nanoid'
 
+# Puppeteer for web scraping
 gem 'puppeteer-ruby'
 
+# Simple I18n for numbers abbreviations
 gem 'si'
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -60,8 +66,6 @@ group :development, :test do
 end
 
 group :test do
-  gem 'vcr'
-  gem 'webmock'
   gem 'shoulda-matchers', '~> 6.0'
 end
 
