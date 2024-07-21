@@ -10,24 +10,22 @@ RSpec.describe Profiles::CreateGithubImporterJob do
   ActiveJob::Base.queue_adapter = :test
 
   describe '#call' do
-    subject(:service_call) { described_class.new(profile).call }
-
     context 'when sync can be started' do
       let(:sync_status) { 'idle' }
 
       it 'sets the sync status as pending' do
-        service_call
+        described_class.call(profile)
         expect(profile.reload.sync_status).to eq('pending')
       end
 
       it 'enqueues the GithubImporterJob' do
         expect {
-          service_call
+          described_class.call(profile)
         }.to have_enqueued_job(GithubImporterJob).with(profile.id)
       end
 
       it 'returns a Success' do
-        result = service_call
+        result = described_class.call(profile)
         expect(result).to be_a(Dry::Monads::Success)
       end
     end
@@ -36,18 +34,18 @@ RSpec.describe Profiles::CreateGithubImporterJob do
       let(:sync_status) { 'processing' }
 
       it 'does not change the sync status' do
-        service_call
+        described_class.call(profile)
         expect(profile.reload.sync_status).to eq('processing')
       end
 
       it 'does not enqueue the GithubImporterJob' do
         expect {
-          service_call
+          described_class.call(profile)
         }.not_to have_enqueued_job(GithubImporterJob)
       end
 
       it 'returns a Failure' do
-        result = service_call
+        result = described_class.call(profile)
         expect(result).to be_a(Dry::Monads::Failure)
         expect(result.failure).to eq(:can_not_start_sync)
       end

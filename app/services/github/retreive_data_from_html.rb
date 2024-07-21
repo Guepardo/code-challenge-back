@@ -2,7 +2,8 @@ module Github
   class RetreiveDataFromHtml < ApplicationService
     HTML_SELECTORS = {
       page_title: 'head > title',
-      stars_count: 'nav.js-sidenav-container-pjax a > span.Counter:nth-child(2)',
+      username: '//span[@itemprop="name"]',
+      stars_count: "//a[@data-tab-item='stars']/span",
       followers_count: 'div.js-profile-editable-area a.Link--secondary > span:nth-child(2)',
       following_count: 'div.js-profile-editable-area a.Link--secondary > span:nth-child(1)',
       year_contributions_count: 'div.js-yearly-contributions > div > h2',
@@ -21,6 +22,7 @@ module Github
       return Failure(:not_found_profile) if not_found_profile?
 
       data = {
+        username:,
         stars_count:,
         followers_count:,
         following_count:,
@@ -75,6 +77,10 @@ module Github
 
     def organization_name
       document.xpath(HTML_SELECTORS[:organization_name]).text
+    end
+
+    def username
+      document.xpath(HTML_SELECTORS[:username]).text.strip
     end
 
     def document

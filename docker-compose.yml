@@ -18,6 +18,7 @@ services:
       - "6379:6379"
 
   web:
+    container_name: github_profile_web
     image: github_profile:latest
     build:
       context: .
