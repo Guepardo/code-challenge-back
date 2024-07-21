@@ -260,19 +260,19 @@ DEPENDENCIES
   bootsnap
   debug
   dry-monads (~> 1.6)
-  factory_bot_rails
-  faker
-  kaminari
-  nanoid
+  factory_bot_rails (~> 6.4.3)
+  faker (~> 3.4.1)
+  kaminari (~> 1.2)
+  nanoid (~> 2.0)
   pg (~> 1.1)
   puma (~> 5.0)
-  puppeteer-ruby
-  rack-cors
+  puppeteer-ruby (~> 0.45)
+  rack-cors (~> 2.0.2)
   rails (~> 7.0.8, >= 7.0.8.4)
   redis (~> 4.0)
   rspec-rails (~> 6.1.0)
   shoulda-matchers (~> 6.0)
-  si
+  si (~> 0.2.0)
   sidekiq (~> 7.3)
   tzinfo-data
 

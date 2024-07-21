@@ -1,5 +1,4 @@
-
-RSpec.describe "Links", type: :request do
+RSpec.describe 'Links', type: :request do
   describe 'GET #show' do
     let(:nanoid) { 'some_nanoid' }
     let(:profile_url) { 'http://github.com/username' }
@@ -25,13 +24,13 @@ RSpec.describe "Links", type: :request do
 
       it 'renders plain text with status not found' do
         get "/#{nanoid}"
-        expect(response.body).to eq("profile not found")
+        expect(response.body).to eq('profile not found')
         expect(response.status).to eq(404)
       end
     end
 
     def mock_lookup_service(result)
-      allow(Links::Lookup).to receive(:call).with(nanoid: nanoid).and_return(result)
+      allow(Links::Lookup).to receive(:call).with(nanoid:).and_return(result)
     end
   end
 end

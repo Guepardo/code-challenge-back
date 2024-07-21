@@ -34,16 +34,16 @@ gem "sidekiq", "~> 7.3"
 gem 'dry-monads', '~> 1.6'
 
 # Pagination
-gem 'kaminari'
+gem 'kaminari', '~> 1.2'
 
 # Nanoid for generating small unique ids
-gem 'nanoid'
+gem 'nanoid', '~> 2.0'
 
 # Puppeteer for web scraping
-gem 'puppeteer-ruby'
+gem 'puppeteer-ruby', '~> 0.45'
 
 # Simple I18n for numbers abbreviations
-gem 'si'
+gem 'si', '~> 0.2.0'
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
@@ -55,13 +55,13 @@ gem "bootsnap", require: false
 # gem "image_processing", "~> 1.2"
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
-gem "rack-cors"
+gem "rack-cors", "~> 2.0.2"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
-  gem 'factory_bot_rails'
+  gem 'factory_bot_rails', '~> 6.4.3'
   gem 'rspec-rails', '~> 6.1.0'
-  gem 'faker'
+  gem 'faker', '~> 3.4.1'
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
 end
 

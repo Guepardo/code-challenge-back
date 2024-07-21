@@ -7,7 +7,7 @@ RSpec.describe Profiles::Create, type: :service do
 
     context 'when profile is valid' do
       it 'creates a profile' do
-        expect{ described_class.call(valid_params) }.to change(Profile, :count).by(1)
+        expect { described_class.call(valid_params) }.to change(Profile, :count).by(1)
       end
 
       it 'calls CreateGithubImporterJob' do

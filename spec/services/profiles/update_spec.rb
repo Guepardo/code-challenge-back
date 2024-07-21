@@ -17,8 +17,8 @@ RSpec.describe Profiles::Update do
         expect(Profiles::CreateGithubImporterJob).to \
           receive(:call).with(profile).and_return(Dry::Monads::Success(true))
 
-        expect{ described_class.call(profile:, params: valid_params) }.to \
-          change{ profile.sync_status }.from('failure').to('idle')
+        expect { described_class.call(profile:, params: valid_params) }.to \
+          change { profile.sync_status }.from('failure').to('idle')
       end
     end
 

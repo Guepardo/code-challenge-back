@@ -9,7 +9,7 @@ RSpec.describe Profile, type: :model do
       let(:profile_url) { 'https://github.com/test_username' }
 
       before do
-        create(:profile, username: username, profile_url: profile_url)
+        create(:profile, username:, profile_url:)
 
         subject.username = username
         subject.profile_url = profile_url
@@ -26,7 +26,6 @@ RSpec.describe Profile, type: :model do
         expect(subject).to validate_presence_of(:profile_url)
         expect(subject).to validate_uniqueness_of(:profile_url).case_insensitive
       end
-
     end
 
     context 'numericality' do

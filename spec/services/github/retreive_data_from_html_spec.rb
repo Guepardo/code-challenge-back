@@ -12,13 +12,13 @@ RSpec.describe Github::RetreiveDataFromHtml do
   it 'retrieves the correct data from the HTML' do
     expected_data = {
       stars_count: 2,
-      followers_count: 212000,
+      followers_count: 212_000,
       following_count: 0,
       year_contributions_count: 2724,
       avatar_url: 'https://avatars.githubusercontent.com/u/1024025?v=4',
       location: 'Portland, OR',
       organization_name: 'Linux Foundation',
-      username: 'Linus Torvalds',
+      username: 'Linus Torvalds'
     }
 
     result = described_class.call(url: profile_url)
@@ -38,7 +38,7 @@ RSpec.describe Github::RetreiveDataFromHtml do
         avatar_url: 'https://avatars.githubusercontent.com/u/98629093?v=4',
         location: '',
         organization_name: '',
-        username: 'Hayden Dennis',
+        username: 'Hayden Dennis'
       }
 
       result = described_class.call(url: profile_url)

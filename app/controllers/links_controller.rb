@@ -5,7 +5,7 @@ class LinksController < ApplicationController
     if result.success?
       redirect_to result.value!, allow_other_host: true
     else
-      render plain: "profile not found", status: :not_found
+      render plain: 'profile not found', status: :not_found
     end
   end
 end

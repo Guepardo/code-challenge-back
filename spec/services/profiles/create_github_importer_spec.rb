@@ -3,9 +3,8 @@
 require 'spec_helper'
 require 'rails_helper'
 
-
 RSpec.describe Profiles::CreateGithubImporterJob do
-  let(:profile) { create(:profile, sync_status: sync_status) }
+  let(:profile) { create(:profile, sync_status:) }
 
   ActiveJob::Base.queue_adapter = :test
 
@@ -19,9 +18,9 @@ RSpec.describe Profiles::CreateGithubImporterJob do
       end
 
       it 'enqueues the GithubImporterJob' do
-        expect {
+        expect do
           described_class.call(profile)
-        }.to have_enqueued_job(GithubImporterJob).with(profile.id)
+        end.to have_enqueued_job(GithubImporterJob).with(profile.id)
       end
 
       it 'returns a Success' do
@@ -39,9 +38,9 @@ RSpec.describe Profiles::CreateGithubImporterJob do
       end
 
       it 'does not enqueue the GithubImporterJob' do
-        expect {
+        expect do
           described_class.call(profile)
-        }.not_to have_enqueued_job(GithubImporterJob)
+        end.not_to have_enqueued_job(GithubImporterJob)
       end
 
       it 'returns a Failure' do

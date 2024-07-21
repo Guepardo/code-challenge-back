@@ -17,9 +17,9 @@ RSpec.describe GithubImporterJob, type: :job do
 
   describe 'enqueueing the job' do
     it 'enqueues the job' do
-      expect {
+      expect do
         GithubImporterJob.perform_later(profile.id)
-      }.to have_enqueued_job.with(profile.id).on_queue('default')
+      end.to have_enqueued_job.with(profile.id).on_queue('default')
     end
   end
 end

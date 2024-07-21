@@ -20,7 +20,7 @@ RSpec.describe Links::Lookup do
       end
 
       it 'returns the cached profile URL' do
-        result = described_class.new(nanoid: nanoid).call
+        result = described_class.new(nanoid:).call
         expect(result).to be_a Dry::Monads::Success
         expect(result.value!).to eq(profile_url)
       end
@@ -33,10 +33,11 @@ RSpec.describe Links::Lookup do
       end
 
       it 'finds the profile in the database, updates the cache, and returns the URL' do
-        result = described_class.new(nanoid: nanoid).call
+        result = described_class.new(nanoid:).call
         expect(result).to be_a Dry::Monads::Success
         expect(result.value!).to eq(profile_url)
-        expect(Rails.cache).to have_received(:write).with(nanoid, profile_url, expires_in: described_class::LOOKUP_EXPIRES_IN)
+        expect(Rails.cache).to have_received(:write).with(nanoid, profile_url,
+                                                          expires_in: described_class::LOOKUP_EXPIRES_IN)
       end
     end
 
@@ -48,7 +49,7 @@ RSpec.describe Links::Lookup do
       end
 
       it 'returns a failure indicating that the profile was not found' do
-        result = described_class.new(nanoid: nanoid).call
+        result = described_class.new(nanoid:).call
         expect(result).to be_a Dry::Monads::Failure
         expect(result.failure).to eq('Profile not found')
       end

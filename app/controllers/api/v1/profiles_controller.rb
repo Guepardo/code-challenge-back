@@ -1,11 +1,11 @@
 class Api::V1::ProfilesController < ApplicationController
-  before_action :set_profile, only: [:update, :destroy]
+  before_action :set_profile, only: %i[update destroy]
 
   def index
     profiles = ProfilesFinder.filter(params)
 
     render json: {
-      data: serialize_resource(profiles, Api::V1::ProfileSerializer), #TODO: have a better way to do this
+      data: serialize_resource(profiles, Api::V1::ProfileSerializer), # TODO: have a better way to do this
       meta: pagination_meta(profiles)
     }
   end

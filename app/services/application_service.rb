@@ -1,4 +1,3 @@
-
 require 'dry/monads'
 
 class ApplicationService
