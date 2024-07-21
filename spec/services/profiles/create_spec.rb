@@ -21,7 +21,6 @@ RSpec.describe Profiles::Create, type: :service do
     context 'when profile is invalid' do
       it 'does not call CreateGithubImporterJob' do
         expect(Profiles::CreateGithubImporterJob).not_to receive(:call)
-
         described_class.call(invalid_params)
       end
 

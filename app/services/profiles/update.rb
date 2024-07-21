@@ -6,11 +6,18 @@ module Profiles
     end
 
     def call
-      profile.update(params) ? Success(true) : Failure(errors: profile.errors)
+      return create_github_importer_job(profile) if profile.update(params)
+
+      Failure(errors: profile.errors)
     end
 
     private
 
     attr_reader :params, :profile
+
+    def create_github_importer_job(profile)
+      profile.idle!
+      CreateGithubImporterJob.call(profile)
+    end
   end
 end

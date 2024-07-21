@@ -11,48 +11,35 @@ RSpec.describe ProfilesFinder do
 
     context 'with only one filter' do
       it 'returns a profile by username' do
-        profiles = described_class.filter(username: first_profile.username)
+        profiles = described_class.filter(term: first_profile.username)
         expect(profiles.count).to eq(1)
       end
 
       it 'returns a profile by location' do
-        profiles = described_class.filter(location: first_profile.location)
+        profiles = described_class.filter(term: first_profile.location)
         expect(profiles.count).to eq(1)
       end
 
       it 'returns a profile by organization name' do
-        profiles = described_class.filter(organization_name: first_profile.organization_name)
+        profiles = described_class.filter(term: first_profile.organization_name)
         expect(profiles.count).to eq(1)
       end
     end
 
     context 'with only one filter and partial match' do
       it 'returns a profile by username' do
-        profiles = described_class.filter(username: first_profile.username[0..10])
+        profiles = described_class.filter(term: first_profile.username[0..10])
         expect(profiles.count).to eq(1)
       end
 
       it 'returns a profile by location' do
-        profiles = described_class.filter(location: first_profile.location[0..10])
+        profiles = described_class.filter(term: first_profile.location[0..10])
         expect(profiles.count).to eq(1)
       end
 
       it 'returns a profile by organization name' do
-        profiles = described_class.filter(organization_name: first_profile.organization_name[0..10])
+        profiles = described_class.filter(term: first_profile.organization_name[0..10])
         expect(profiles.count).to eq(1)
-      end
-    end
-
-    context 'with multiple filters' do
-      it 'returns two profiles by username and location' do
-        profiles = described_class.filter(username: first_profile.username, location: last_profile.location)
-        expect(profiles.count).to eq(2)
-      end
-
-      it 'returns two profiles by location and organization name' do
-        profiles = described_class.filter(username: first_profile.username,
-                                          organization_name: last_profile.organization_name)
-        expect(profiles.count).to eq(2)
       end
     end
 
