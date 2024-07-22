@@ -2,14 +2,14 @@
 
   ## Instalação
 
-  Navegue até o diretorio do projeto e execute os seguintes comandos:
+  Navegue até o diretório do projeto e execute os seguintes comandos:
 
   Copie o arquivo `.env.example` para o `.env`:
   ```
   $ cp .env.example .env
   ```
 
-  Crie o container do projeto:
+  Crie o contêiner do projeto:
 
   ```
   $ docker-compose up
@@ -22,11 +22,11 @@
   $ make start
   ```
 
-  Não é necessário alterar as configurações do arquivo .env.example para que o projeto rode em modo de desenvolvimento. O container vai ficar aberto em http://localhost:3000 e pode ser acessado pelo navegador. Para acompanhar o processamento dos jobs, acesse a URL http://localhost:3000/sidekiq.
+  Não é necessário alterar as configurações do arquivo .env.example para que o projeto rode em modo de desenvolvimento. O contêiner vai ficar aberto em http://localhost:3000 e pode ser acessado pelo navegador. Para acompanhar o processamento dos jobs, acesse a URL http://localhost:3000/sidekiq.
 
-  ## Executando Tests no container
+  ## Executando Tests no Contêiner
 
-  Para executar os testes no container execute o seguinte comando: **É importante que o container esteja em execução**
+  Para executar os testes no contêiner execute o seguinte comando: **É importante que o contêiner esteja em execução**
 
   ```
   $ docker exec -it github_profile_web bash -c "export RAILS_ENV=test && bundle install && bundle exec rake db:create db:schema:load && bundle exec rspec --format=documentation"
@@ -60,9 +60,9 @@
   - Redis
   - Postgres
 
-  ## Decisões de arquitetura
+  ## Decisões de Arquitetura
 
-  ### Processamento Assincrono dos Perfis
+  ### Processamento Assíncrono dos Perfis
 
   Os perfis são processados em segundo plano utilizando o Sidekiq. O modelo de Perfil inclui um campo de 'status de sincronização', que armazena uma pequena máquina de estados para manter o usuário informado sobre o andamento e para executar validações internas em momentos específicos.
 
