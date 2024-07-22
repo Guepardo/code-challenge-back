@@ -87,3 +87,4 @@
 
   - Os testes não capturam o estado real da estrutura HTML do perfil do GitHub. Em um projeto real, seria interessante criar um teste End-to-End para garantir o funcionamento completo do sistema.
   - O processo de cache dos links funciona muito bem em cenários com poucos links muito acessados. No entanto, em cenários de larga escala, com centenas de milhares de links sendo acessados de forma intermitente, essa arquitetura pode não ser a mais adequada.
+  - Busca por perfis utiliza instruções like no SQL. Em um projeto com mais registros essa estratégia poderia trazer problemas de performance.
